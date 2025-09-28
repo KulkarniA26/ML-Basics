@@ -1,0 +1,158 @@
+ML Process -load data -pre processing -training a model -evaluating a
+model -making predictions
+
+
++*In[1]:*+
+[source, ipython3]
+----
+#import necessary librarues
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+----
+
+
++*In[3]:*+
+[source, ipython3]
+----
+iris_data = pd.read_csv('iris.csv')
+iris_data.head()
+----
+
+
++*Out[3]:*+
+----
+[cols=",,,,,",options="header",]
+|===
+| |sepal.length |sepal.width |petal.length |petal.width |variety
+|0 |5.1 |3.5 |1.4 |0.2 |Setosa
+|1 |4.9 |3.0 |1.4 |0.2 |Setosa
+|2 |4.7 |3.2 |1.3 |0.2 |Setosa
+|3 |4.6 |3.1 |1.5 |0.2 |Setosa
+|4 |5.0 |3.6 |1.4 |0.2 |Setosa
+|===
+----
+
+
++*In[6]:*+
+[source, ipython3]
+----
+#split data inst features as (x) and labels (y)
+x = iris_data.drop(columns = ['variety'])
+y = iris_data['variety']
+----
+
+
++*In[7]:*+
+[source, ipython3]
+----
+x.head()
+----
+
+
++*Out[7]:*+
+----
+[cols=",,,,",options="header",]
+|===
+| |sepal.length |sepal.width |petal.length |petal.width
+|0 |5.1 |3.5 |1.4 |0.2
+|1 |4.9 |3.0 |1.4 |0.2
+|2 |4.7 |3.2 |1.3 |0.2
+|3 |4.6 |3.1 |1.5 |0.2
+|4 |5.0 |3.6 |1.4 |0.2
+|===
+----
+
+
++*In[8]:*+
+[source, ipython3]
+----
+y.head()
+----
+
+
++*Out[8]:*+
+----0    Setosa
+1    Setosa
+2    Setosa
+3    Setosa
+4    Setosa
+Name: variety, dtype: object----
+
+
++*In[15]:*+
+[source, ipython3]
+----
+#create a ML Model - initalizes model using default settings
+model = LogisticRegression(max_iter=500, solver='lbfgs')
+----
+
+
++*In[16]:*+
+[source, ipython3]
+----
+#train the model - fit method - trains logisticregression - of values x for corresponding y labels
+#learning relation between features(input) and target (output) variables
+----
+
+
++*In[18]:*+
+[source, ipython3]
+----
+model.fit(x.values, y)
+----
+
+
++*Out[18]:*+
+----
+[[sk-container-id-4]]
+....
+LogisticRegression(max_iter=500)
+....
+
+*In a Jupyter environment, please rerun this cell to show the HTML
+representation or trust the notebook. +
+On GitHub, the HTML representation is unable to render, please try
+loading this page with nbviewer.org.*
+
+LogisticRegression
+
+https://scikit-learn.org/1.6/modules/generated/sklearn.linear_model.LogisticRegression.html[?Documentation
+for LogisticRegression][.sk-estimator-doc-link .fitted]##iFitted##
+
+....
+LogisticRegression(max_iter=500)
+....
+----
+
+
++*In[26]:*+
+[source, ipython3]
+----
+#will predict using the above model for the given input values - 2darray
+----
+
+
++*In[37]:*+
+[source, ipython3]
+----
+predictions = model.predict([[4.8,3.7,1.7,0.6]])
+----
+
+
++*In[38]:*+
+[source, ipython3]
+----
+predictions
+----
+
+
++*Out[38]:*+
+----array(['Setosa'], dtype=object)----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----
+
